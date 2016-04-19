@@ -1,0 +1,22 @@
+package test.paractice.counter
+
+trait Counter {
+  protected var count : Int;
+  def increment()
+}
+
+/*
+class Foo{
+  val foo = new IncrementByOne
+  foo.count
+}*/
+
+class IncrementByOne extends Counter {
+  var count = 0;
+  override def increment() : Unit = count +=1 
+}
+
+class ExponentialIncrementer(rate: Int) extends Counter {
+  var count = 0;
+  def increment() : Unit = if(count == 0) count = 1 else count *= rate
+}
