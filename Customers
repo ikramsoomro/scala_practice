@@ -1,0 +1,51 @@
+package test.paractice
+
+import org.test.scala.practice.Sortable
+import scala.collection.mutable._
+
+class Customers extends Sortable[Customer] {
+  
+  private val customers = new HashSet[Customer]
+  
+  def add(customer: Customer) =  customers.add(customer)
+  
+  def iterator() : Iterator[Customer] = customers.iterator
+  
+}
+
+class CustomersSortableBySpending extends Customers{
+  
+  override def sort() : List[Customer] = {
+    this.toList.sorted((a: Customer, b: Customer) => b.total.compare(a.total))      
+  }
+  
+  implicit def OrderingToFunction[A](function: (A, A) => Int) : Ordering[A] = {
+    new Ordering[A] {
+      def compare(a: A, b: A) = function.apply(a, b)
+    }   
+  }
+    
+  
+}
+
+object Customers {
+  
+  def main(args: Array[String]){
+    val customers = new Customers
+    customers.add(new Customer("Ikram", "8 Fritz Dr"))
+    customers.add(new Customer("Shafqat", "8 Fritz Dr"))
+    customers.add(new Customer("Inam", "Baltimore MA"))
+    
+    println(customers.sort)
+    
+    
+    val customers2 = new CustomersSortableBySpending
+    customers2.add(new Customer("Ikram", "8 Fritz Dr", 9.99))
+    customers2.add(new Customer("Shafqat", "8 Fritz Dr", 99.99))
+    customers2.add(new Customer("Inam", "Baltimore MA", 49.99))
+    println(customers2.sort());
+    
+    
+    
+  }
+}
