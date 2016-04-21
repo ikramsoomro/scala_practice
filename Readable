@@ -1,0 +1,9 @@
+package org.test.scala.practice
+
+import java.nio.CharBuffer
+
+trait Readable {
+  
+  def read(buffer: CharBuffer) : Int
+  
+}
