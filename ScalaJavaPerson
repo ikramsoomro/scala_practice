@@ -1,0 +1,6 @@
+package org.test.practice.inheritance
+
+class ScalaJavaPerson(val firstName: String, val lastName:String, val age:Int) 
+  extends JavaPerson(firstName, lastName, age) {
+  
+}
