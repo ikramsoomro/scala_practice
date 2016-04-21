@@ -1,0 +1,26 @@
+package test.paractice
+
+import java.util.ArrayList
+import scala.collection.immutable._
+
+class ShoppingBasket {
+  
+  private val items = new ArrayList[Item]
+  
+  def add(item: Item){
+    items.add(item)
+  }
+  
+  def value : Double = {    
+    //items.stream().mapToDouble( ((i: Item) => i.price())).sum();
+    //items.(_.price);
+    0.0
+    
+  }
+}
+
+trait Item {
+  
+  def price() : Double
+  
+}
