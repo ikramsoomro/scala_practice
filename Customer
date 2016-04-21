@@ -1,0 +1,51 @@
+package test.paractice
+
+class Customer(val name: String, val address: String, val value: Double) extends Ordered[Customer] {
+  
+  def this(name: String, address: String){
+    this(name, address, 0.0)
+  }
+  
+  private final val basket: ShoppingBasket = new ShoppingBasket
+  
+  def add(item: Item){
+    basket.add(item)
+  }
+  
+  def total: Double = {
+    this.value
+  }
+  
+  override def compare(that: Customer) : Int = name.compare(that.name)
+  
+  override def toString() : String = name + " - " + address
+}
+
+class DiscountedCutomer(name: String, address: String) extends Customer(name, address) {
+  
+  override def total: Double = {
+    super.total * .90
+  }
+  
+}
+
+object Customer{
+  
+  def main(args: Array[String]) {
+    
+    val joe = new DiscountedCutomer("joe", "123 Abc Str")
+    joe.add(new Item{
+      def price = 2.2
+    })
+    joe.add(new Item{
+      def price = {
+        1.99
+      }
+    })
+    
+    println("Joe's basket total : " + joe.total)
+    
+    //println("Joe's basket total : " + joe.total)
+    
+  } 
+}
