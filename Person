@@ -1,0 +1,88 @@
+package org.test.practice.inheritance
+
+/*
+class Person(val firstName: String, val lastName: String, val age: Int) {
+  
+  
+  def work = doSomething(this)
+  
+  var doSomething: (Person) => Unit = 
+    (p:Person) => System.out.println("I'm" + p + " and I don't do anything yet!");
+  
+  override def toString() : String = "[Person: firstName="+firstName+" lastName="+lastName+" age="+age+"]"
+  
+}
+
+object PersonApp {
+  
+  def main(args : Array[String]) : Unit = {
+    
+    val p = new Person("Ikram", "Soomro", 33)
+    System.out.println(p);
+    p.work
+    
+    p.doSomething =
+      (p:Person) => System.out.println("I am a " + p + " and I edit books")
+     p.work
+     
+     p.doSomething = 
+       (p:Person) => System.out.println("I am a " + p + " and I edit HTML books")
+    p.work
+  }
+    
+    
+  }
+  */
+
+// This is Scala
+abstract class Person(val firstName:String, val lastName:String, val age:Int)
+{
+  def doSomething
+  
+  def weight : Int
+    
+  override def toString = "[Person: firstName="+firstName+" lastName="+lastName+
+                          " age="+age+"]"
+}
+
+final class Student(firstName:String, lastName:String, age:Int, val subject:String)
+  extends Person(firstName, lastName, age)
+{
+  def weight : Int =
+    age // students are notoriously skinny
+
+  final def doSomething =
+  {
+    System.out.println("I'm studying hard, Ma, I swear! (Pass the beer, guys!)")
+  }
+}
+
+final class Employee(firstName:String, lastName:String, age:Int)
+  extends Person(firstName, lastName, age)
+{
+  final var weight : Int = age * 4 // Employees are not skinny at all
+
+  def doSomething =
+  {
+    System.out.println("I'm working hard, hon, I swear! (Pass the beer, guys!)")
+  }
+}
+
+object ScalaPersonApp {
+  
+  def main(args : Array[String]) {
+
+   var s = new Student("Ikram", "Soomro", 33, "Programming")
+    println(s.weight)
+    //s.weight = 10;
+
+    
+    val e = new Employee("Ikram", "Soomro", 33)
+    println(e.weight)
+    e.weight = 10;
+    
+    
+    
+    
+  }
+}
