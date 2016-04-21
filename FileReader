@@ -1,0 +1,13 @@
+package org.test.scala.practice
+
+import java.nio.CharBuffer
+
+class FileReader extends Readable with AutoCloseable {
+  
+  override def read(buffer: CharBuffer) : Int = {
+    0
+  }
+  
+  def close() : Unit = ???
+  
+}
