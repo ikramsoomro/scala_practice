@@ -1,0 +1,9 @@
+package org.test.scala.practice
+
+trait Sortable[A <: Ordered[A]] extends Iterable[A]{
+  
+  def sort: List[A] = {
+    this.toList.sorted
+  }
+  
+}
